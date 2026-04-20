@@ -138,7 +138,7 @@
             overflow: hidden;
         }
 
-        /* 图文 */
+        /* 图片 */
         .icon-box img {
             width: 100%;
             height: 100%;
@@ -262,6 +262,106 @@
             transform: scale(0.96);
             background: #e0efff !important;
         }
+
+        /* 聊天气泡按钮 */
+        .chat-bubble-btn {
+            cursor: pointer;
+            transition: transform 0.2s ease;
+        }
+        .chat-bubble-btn:active {
+            transform: scale(0.9);
+        }
+
+        /* 弹窗样式 */
+        .popup-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.3);
+            backdrop-filter: blur(8px);
+            -webkit-backdrop-filter: blur(8px);
+            display: none;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation: fadeIn 0.25s ease;
+        }
+
+        .popup-overlay.show {
+            display: flex;
+        }
+
+        .popup-content {
+            background: rgba(255, 255, 255, 0.95);
+            backdrop-filter: blur(10px);
+            -webkit-backdrop-filter: blur(10px);
+            border-radius: 28px;
+            padding: 30px 24px;
+            max-width: 340px;
+            width: 85%;
+            max-height: 70vh;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15), 0 6px 12px rgba(0, 0, 0, 0.1);
+            animation: slideUp 0.3s cubic-bezier(0.2, 0.9, 0.4, 1);
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .popup-text {
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            font-weight: 450;
+            line-height: 1.6;
+            color: #1d1d1f;
+            margin-bottom: 24px;
+            text-align: left;
+            overflow-y: auto;
+            max-height: 400px;
+            padding-right: 4px;
+            scrollbar-width: none;
+        }
+
+        .popup-text::-webkit-scrollbar {
+            display: none;
+        }
+
+        .popup-text strong {
+            color: #3b82f6;
+            font-weight: 700;
+        }
+
+        .popup-close {
+            width: 100%;
+            padding: 14px;
+            background: #3b82f6;
+            color: white;
+            border: none;
+            border-radius: 16px;
+            font-size: 16px;
+            font-weight: 600;
+            font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 0 4px 12px rgba(59, 130, 246, 0.25);
+            flex-shrink: 0;
+        }
+
+        .popup-close:active {
+            transform: scale(0.97);
+            background: #2563eb;
+        }
+
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+
+        @keyframes slideUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
@@ -292,7 +392,11 @@
                 <div class="card-title">GoSky</div>
                 <div style="color:#86868b; font-size:13px; margin-top:4px; font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Helvetica, Arial, sans-serif; margin-left: 18px;">Safe, fast and stable.</div>
             </div>
-            <div style="font-size:24px; color:#d2d2d7;">+</div>
+            <div class="chat-bubble-btn" style="font-size:24px;" onclick="showPopup()">
+                <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
+                    <path fill="none" stroke="#60a5fa" stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8 9h8m-8 4h6m0 5h-1l-5 3v-3H6a3 3 0 0 1-3-3V7a3 3 0 0 1 3-3h12a3 3 0 0 1 3 3v4.5M19 22v.01M19 19a2.003 2.003 0 0 0 .914-3.782a1.98 1.98 0 0 0-2.414.483"/>
+                </svg>
+            </div>
         </div>
 
         <div class="icon-stack">
@@ -331,20 +435,88 @@
         </div>
         
         <div class="channel-block">
-    <div class="channel-hint">
-        <a href="https://qm.qq.com/q/DZqO5v6H5Y" style="text-decoration: none; color: #8e8e93;">前往QQ群聊</a>
-    </div>
-    <a href="https://pd.qq.com/s/8usrtzszi?b=9" class="channel-btn">加入官方频道</a>
-</div>
+            <div class="channel-hint">
+                <a href="https://qm.qq.com/q/DZqO5v6H5Y" style="text-decoration: none; color: #8e8e93;">前往QQ群聊</a>
+            </div>
+            <a href="https://pd.qq.com/s/8usrtzszi?b=9" class="channel-btn">加入官方频道</a>
+        </div>
     </section>
     
     <div class="copyright">
-    <div style="margin-bottom: 6px;">
-        <a href="https://thatskytime.neocities.org" style="color: #000000; text-decoration: underline; text-decoration-color: #888888; font-size: 12px; font-weight: 500;">Skytime</a>
+        <div style="margin-bottom: 6px;">
+            <a href="https://thatskytime.neocities.org" style="color: #000000; text-decoration: underline; text-decoration-color: #888888; font-size: 12px; font-weight: 500;">Skytime</a>
+        </div>
+        © 2023 - 2026 GoSky. All rights reserved.
     </div>
-    © 2023 - 2026 GoSky. All rights reserved.
 </div>
+
+<!-- 弹窗遮罩层 -->
+<div class="popup-overlay" id="popupOverlay" onclick="hidePopup()">
+    <div class="popup-content" onclick="event.stopPropagation()">
+        <div class="popup-text">
+    <strong style="color:#3b82f6;font-size:18px;">GoSky是您梦寐以求的完美安全VPN加速器代理！没有讨厌的注册！</strong><br>
+    
+    您是否正在寻找快速、安全的加速器代理解决方案？<br>
+    您是否担心热点监视您或阻止您查看所选内容？<br>
+    是否想隐藏您的IP以免受可能的攻击？<br><br>
+    
+    <strong>不用再找了，GoSky就是您要的APP！</strong><br><br>
+    
+    GoSky是您所需的理想热点盾牌、安全加速器代理，轻轻一点即可连接，没有麻烦的注册或隐藏费用。<br>
+    借助每日服务器更新和数千个可用IP，GoSky让您可以立即更改自己的位置，可以从诸多位置选择，并且不会被阻止。完美的隐私和超快速的涡轮增压速度。<br><br>
+    
+    我们是否提到了无限下载？<br>
+    <strong>是的，没有时间限制！没有流量使用限制！</strong>GoSky在各个地方均可运行，用例不胜枚举。您不会遇到任何限制。<br><br>
+    
+    <strong style="color:#3b82f6;">GoSky为您提供什么？</strong><br>
+    - 真正的一键式加速器，可以在几秒钟内建立一个连到更好网络的连接<br>
+    - 简单易用的节点，没有麻烦或困扰，呼啦！<br>
+    - 分布在数十个位置的众多专用服务器<br>
+    - 无限流传输和解锁主服务器<br>
+    - 国内外顶级速度<br><br>
+    
+    <strong style="color:#3b82f6;">极大自由的加速器</strong><br>
+    - 不受限制地访问所有在线内容<br>
+    - P2P自由<br>
+    - 隐身浏览和隧道<br>
+    - 具有极快速度的涡轮增压<br>
+    - 解除学校、校园、大学或工作WiFi的限制<br><br>
+    
+    <strong style="color:#3b82f6;">无限使用GoSky</strong><br>
+    - 在不安全的WiFi环境（如咖啡厅、酒吧、酒店、火车、机场）中保护自己<br>
+    - 绕开地理限制<br>
+    - 解锁社交媒体网站，如Facebook、Instagram、X、Threads等<br>
+    - 解锁来自Facebook Messenger、Skype、Viber通话和Whatsapp通话的语音通话<br><br>
+    
+    <strong style="color:#3b82f6;">在哪里可以使用GoSky？哪些云代理服务器可用？</strong><br>
+    您可以随时随地使用我们的加速器和代理。诸多可用位置，您可以随时随地进行切换。<br>
+    <span style="color:#1d1d1f; background:#e8e8ed; padding:2px 6px; border-radius:6px;">美国（东部+西部服务器）、加拿大、德国、奥地利、罗马尼亚、法国、英国、瑞士、比利时、新加坡......</span><br><br>
+    
+    <strong style="color:#3b82f6;">重要免责声明：</strong><br>
+    <span style="color:#86868b;">此APP会定期更新，并且会频繁添加新服务器、IP和位置。很遗憾，尽管我们希望为您所在国家/地区提供100%的可用性保证，但部分地区仍在尽最大努力阻止其公民享受自由。</span><br><br>
+    
+    <span style="color:#86868b;">如果连接存在问题，尝试多次点击连接5秒后重试或方可解决，请使用APP内的反馈选项将其报告给我们，我们将尽最大努力使它再次正常运行。</span>
 </div>
+        <button class="popup-close" onclick="hidePopup()">好的</button>
+    </div>
+</div>
+
+<script>
+    function showPopup() {
+        document.getElementById('popupOverlay').classList.add('show');
+    }
+
+    function hidePopup() {
+        document.getElementById('popupOverlay').classList.remove('show');
+    }
+
+    // 点击遮罩关闭
+    document.getElementById('popupOverlay').addEventListener('click', function(e) {
+        if (e.target === this) {
+            hidePopup();
+        }
+    });
+</script>
 
 </body>
 </html>
