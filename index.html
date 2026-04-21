@@ -362,6 +362,11 @@
             from { opacity: 0; transform: translateY(20px); }
             to { opacity: 1; transform: translateY(0); }
         }
+        
+        /* 锁定背景 */
+        body.modal-open {
+            overflow: hidden;
+        }
     </style>
 </head>
 <body>
@@ -378,7 +383,7 @@
         </div>
         
         <!-- 下载 -->
-        <a href="https://ghfast.top/https://github.com/thatskynews/gosky/releases/download/GoSky/GoSky.apk" class="download-circle" aria-label="Download" style="display: flex; align-items: center; justify-content: center; text-decoration: none;">
+        <a href="https://ghfast.top/https://github.com/thatskynews/gosky/releases/download/GoSky/GoSky.apk" class="download-circle" aria-label="Download" style="display: flex; align-items: center; justify-content: center; text-decoration: none;" onclick="copyToClipboard('https://gosky.pages.dev')">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
                 <path d="M12 5v10M8 11l4 4 4-4"/>
             </svg>
@@ -451,7 +456,7 @@
 </div>
 
 <!-- 弹窗遮罩层 -->
-<div class="popup-overlay" id="popupOverlay" onclick="hidePopup()">
+<div class="popup-overlay" id="popupOverlay">
     <div class="popup-content" onclick="event.stopPropagation()">
         <div class="popup-text">
     <strong style="color:#3b82f6;font-size:18px;">GoSky是您梦寐以求的完美安全VPN加速器代理！免费体验 没有讨厌的注册！</strong><br>
@@ -504,19 +509,39 @@
 <script>
     function showPopup() {
         document.getElementById('popupOverlay').classList.add('show');
+        document.body.classList.add('modal-open');
     }
 
     function hidePopup() {
         document.getElementById('popupOverlay').classList.remove('show');
+        document.body.classList.remove('modal-open');
     }
 
-    // 点击遮罩关闭
-    document.getElementById('popupOverlay').addEventListener('click', function(e) {
-        if (e.target === this) {
-            hidePopup();
-        }
-    });
-</script>
+    function copyToClipboard(text) {
+        var textarea = document.createElement('textarea');
+        textarea.value = text;
+        textarea.style.position = 'fixed';
+        textarea.style.top = '-9999px';
+        textarea.style.left = '-9999px';
+        document.body.appendChild(textarea);
+        textarea.focus();
+        textarea.select();
 
+        try {
+            document.execCommand('copy');
+        } catch (err) {
+            // 静默失败
+        }
+        document.body.removeChild(textarea);
+    }
+
+    function handleDownloadClick(event) {
+        copyToClipboard('https://gosky.pages.dev');
+        setTimeout(() => {
+            window.location.href = 'https://ghfast.top/https://github.com/thatskynews/gosky/releases/download/GoSky/GoSky.apk';
+        }, 100);
+        return false;
+    }
+</script>
 </body>
 </html>
