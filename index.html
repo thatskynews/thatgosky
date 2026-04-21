@@ -184,6 +184,11 @@
             transition: all 0.2s;
         }
         .guide-btn:active { background: #e8e8ed; transform: scale(0.98); }
+        
+        #channel-join-btn:active {
+            transform: scale(0.96);
+            background: #e0efff !important;
+        }
 
         .bottom-nav {
             margin-top: 30px;
@@ -216,7 +221,7 @@
         .channel-hint {
             font-size: 13px;
             color: #8e8e93;
-            background: #f8f9fc;
+            background: #f5f5f7;
             display: inline-block;
             padding: 6px 16px;
             border-radius: 30px;
@@ -441,9 +446,9 @@
         
         <div class="channel-block">
             <div class="channel-hint">
-                <a href="https://qm.qq.com/q/DZqO5v6H5Y" style="text-decoration: none; color: #8e8e93;">前往QQ群聊</a>
+                <a href="https://qm.qq.com/q/DZqO5v6H5Y" style="text-decoration: none; color: #8e8e93; display: inline-block; transition: transform 0.15s ease;" onmousedown="this.style.transform='scale(0.96)'" onmouseup="this.style.transform='scale(1)'" ontouchstart="this.style.transform='scale(0.96)'" ontouchend="this.style.transform='scale(1)'">前往QQ群聊</a>
             </div>
-            <a href="https://pd.qq.com/s/8usrtzszi?b=9" class="channel-btn">加入频道社区</a>
+            <a href="https://pd.qq.com/s/8usrtzszi?b=9" id="channel-join-btn" class="guide-btn" style="background: #f5f5f7; color: #1d1d1f;">加入频道社区</a>
         </div>
     </section>
     
