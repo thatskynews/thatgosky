@@ -513,6 +513,16 @@
 </div>
 
     <script>
+    function showPopup() {
+        document.getElementById('popupOverlay').classList.add('show');
+        document.body.classList.add('modal-open');
+    }
+
+    function hidePopup() {
+        document.getElementById('popupOverlay').classList.remove('show');
+        document.body.classList.remove('modal-open');
+    }
+
     // 64下载
     var encodedDownloadLink = "aHR0cHM6Ly9naGZhc3QudG9wL2h0dHBzOi8vZ2l0aHViLmNvbS90aGF0c2t5bmV3cy9nb3NreS9yZWxlYXNlcy9kb3dubG9hZC9Hb1NreS9Hb1NreS5hcGs=";
 
