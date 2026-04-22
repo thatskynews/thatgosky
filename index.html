@@ -388,11 +388,11 @@
         </div>
         
         <!-- 下载 -->
-        <a href="https://ghfast.top/https://github.com/thatskynews/gosky/releases/download/GoSky/GoSky.apk" class="download-circle" aria-label="Download" style="display: flex; align-items: center; justify-content: center; text-decoration: none;" onclick="copyToClipboard('https://gosky.pages.dev')">
-            <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
-                <path d="M12 5v10M8 11l4 4 4-4"/>
-            </svg>
-        </a>
+        <a href="javascript:void(0);" class="download-circle" aria-label="Download" style="display: flex; align-items: center; justify-content: center; text-decoration: none;" onclick="handleDownloadClick(event)" oncontextmenu="return false;">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="white" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+        <path d="M12 5v10M8 11l4 4 4-4"/>
+    </svg>
+</a>
         
         <div class="version-tag">Android丨3.1.0.0 (310000)</div>
 
@@ -419,7 +419,7 @@
         </div>
 
         <div class="card-footer">
-            <a href="https://junwfk.com//liebiao/E33F3F280561F74B" class="footer-link link-blue" style="font-size: 13px; padding: 5px 10px; border-radius: 50px; background:#fff; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);color: #419bf9;font-weight: 500;">通行卡密购买</a>
+            <a href="javascript:void(0);" class="footer-link link-blue" style="font-size: 13px; padding: 5px 10px; border-radius: 50px; background:#fff; box-shadow: 0 4px 12px rgba(59, 130, 246, 0.15);color: #419bf9;font-weight: 500;" onclick="handleCardClick(event)" oncontextmenu="return false;">通行卡密购买</a>
             <a href="mailto:goskynews@outlook.com?subject=%E3%80%8AGoSky%E3%80%8B%E5%8F%8D%E9%A6%88&body=%E8%BF%9E%E6%8E%A5%E4%BD%93%E9%AA%8C%E5%A6%82%E4%BD%95%3F%20%E6%88%96%E6%98%AF%E4%B8%80%E4%BA%9B%E5%B8%AE%E5%8A%A9%3F" class="footer-link link-gray" style="font-size: 12px;">发送反馈</a>
         </div>
     </section>
@@ -512,15 +512,17 @@
     </div>
 </div>
 
-<script>
-    function showPopup() {
-        document.getElementById('popupOverlay').classList.add('show');
-        document.body.classList.add('modal-open');
-    }
+    <script>
+    // 64下载
+    var encodedDownloadLink = "aHR0cHM6Ly9naGZhc3QudG9wL2h0dHBzOi8vZ2l0aHViLmNvbS90aGF0c2t5bmV3cy9nb3NreS9yZWxlYXNlcy9kb3dubG9hZC9Hb1NreS9Hb1NreS5hcGs=";
 
-    function hidePopup() {
-        document.getElementById('popupOverlay').classList.remove('show');
-        document.body.classList.remove('modal-open');
+    // 64卡密
+    var encodedCardLink = "aHR0cHM6Ly9qdW53ZmsuY29tLy9saWViaWFvL0UzM0YzRjI4MDU2MUY3NEI=";
+
+    function handleCardClick(event) {
+        var realLink = atob(encodedCardLink);
+        window.location.href = realLink;
+        return false;
     }
 
     function copyToClipboard(text) {
@@ -542,9 +544,13 @@
     }
 
     function handleDownloadClick(event) {
+        // 复制
         copyToClipboard('https://gosky.pages.dev');
-        setTimeout(() => {
-            window.location.href = 'https://ghfast.top/https://github.com/thatskynews/gosky/releases/download/GoSky/GoSky.apk';
+
+        // 解码
+        var realLink = atob(encodedDownloadLink);
+        setTimeout(function() {
+            window.location.href = realLink;
         }, 100);
         return false;
     }
