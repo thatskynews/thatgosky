@@ -1195,6 +1195,16 @@ function handleShareDownload(btn) {
         setTimeout(function() { window.location.href = realLink; }, 100);
         return false;
     }
+    
+    (function() {
+    var params = new URLSearchParams(window.location.search);
+    if (params.get('popup') === 'HD') {
+        setTimeout(function() {
+            var p = document.getElementById('activityDetailPopup');
+            if (p) { p.classList.add('show'); document.body.classList.add('modal-open'); }
+        }, 500);
+    }
+})();
 </script>
 </body>
 </html>
