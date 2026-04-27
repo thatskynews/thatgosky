@@ -940,7 +940,7 @@
                 <div class="faq-anim-box" id="faqErrorAnim"></div>
                 <div class="faq-text-block">
                     <div class="faq-q">点击下载没有反应？</div>
-                    <div class="faq-a">请检查浏览器是否开启了跳转拦截下载。部分浏览器会自动阻止弹出式下载，请在浏览器设置中允许后再次点击下载按钮即可。</div>
+                    <div class="faq-a">请检查浏览器是否开启了跳转拦截下载等。部分浏览器会自动阻止弹出式下载，请在浏览器设置中关闭后再次点击下载按钮即可。</div>
                 </div>
             </div>
             
@@ -1198,12 +1198,17 @@ function handleShareDownload(btn) {
     
     (function() {
     var params = new URLSearchParams(window.location.search);
-    if (params.get('popup') === 'HD') {
-        setTimeout(function() {
-            var p = document.getElementById('activityDetailPopup');
-            if (p) { p.classList.add('show'); document.body.classList.add('modal-open'); }
-        }, 500);
-    }
+    var p = params.get('popup');
+    setTimeout(function() {
+        if (p === 'HD') {
+            var el = document.getElementById('activityDetailPopup');
+            if (el) { el.classList.add('show'); document.body.classList.add('modal-open'); }
+        }
+        if (p === 'YY') {
+            var el = document.getElementById('sharePopup');
+            if (el) { el.classList.add('show'); document.body.classList.add('modal-open'); }
+        }
+    }, 500);
 })();
 </script>
 </body>
