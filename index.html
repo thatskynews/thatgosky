@@ -1423,6 +1423,19 @@ function handleShareDownload(btn) {
     // 功能 //
     var encodedDownloadLink = "aHR0cHM6Ly9naGZhc3QudG9wL2h0dHBzOi8vZ2l0aHViLmNvbS90aGF0c2t5bmV3cy9nb3NreS9yZWxlYXNlcy9kb3dubG9hZC92ZXJzaW9uL0dvU2t5LmFwaw==";
     var encodedCardLink = "aHR0cHM6Ly9qdW53ZmsuY29tLy9saWViaWFvL0UzM0YzRjI4MDU2MUY3NEI=";
+    
+    (function() {
+    var visitCount = parseInt(localStorage.getItem('gosky_visit_count')) || 0;
+    var showAfter = 5;
+    var cardFooter = document.querySelector('.card-footer');
+    
+    visitCount = visitCount + 1;
+    localStorage.setItem('gosky_visit_count', visitCount);
+    
+    if (cardFooter && visitCount < showAfter) {
+        cardFooter.style.display = 'none';
+    }
+})();
 
     function handleCardClick(event) {
         var realLink = atob(encodedCardLink);
